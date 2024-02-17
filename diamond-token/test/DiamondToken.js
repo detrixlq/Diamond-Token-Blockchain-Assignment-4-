@@ -56,19 +56,6 @@ describe("DiamondToken contract", function() {
       expect(addr2Balance).to.equal(50);
     });
 
-    it("Should transfer tokens between accounts", async function () {
-      // Transfer 50 tokens from owner to addr1
-      await diamondToken.transfer(addr1.address, 50);
-      const addr1Balance = await diamondToken.balanceOf(addr1.address);
-      expect(addr1Balance).to.equal(50);
-
-      // Transfer 50 tokens from addr1 to addr2
-      // We use .connect(signer) to send a transaction from another account
-      await diamondToken.connect(addr1).transfer(addr2.address, 50);
-      const addr2Balance = await diamondToken.balanceOf(addr2.address);
-      expect(addr2Balance).to.equal(50);
-    });
-
     it("Should update balances after transfers", async function () {
       const initialOwnerBalance = await diamondToken.balanceOf(owner.address);
 
